@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Asset Management</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src='main.js'></script>
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: header">
+
+	</div>
+
+
+
+	<div class="container mt-5">
+		<h3>Add Asset  details </h3>
+		<form th:action="@{/addAsset}" method="post">
+		    <div class="mb-3 mt-3">
+				<label for="rfidTag">RFID Tag:</label>
+				<input type="text" class="form-control" id="rfidTag" placeholder="Enter rfidTag" name="rfidTag">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="assetTag">Asset Tag:</label>
+				<input type="text" class="form-control" id="assetTag" placeholder="Enter asset tag" name="assetTag">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="serialNumber">Serial Number:</label>
+				<input type="text" class="form-control" id="serialNumber" placeholder="Enter Serial Number" name="serialNumber">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="description">Description:</label>
+				<input type="description" class="form-control" id="description" placeholder="Enter description" name="description">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="friendlyName">Friendly Name:</label>
+				<input type="text" class="form-control" id="friendlyName" placeholder="Enter Friendly Name" name="friendlyName">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="model">Model:</label>
+				<input type="text" class="form-control" id="model" placeholder="Enter model" name="model">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="manufacturer">Manufacturer:</label>
+				<input type="text" class="form-control" id="manufacturer" placeholder="Enter Manufacturer" name="manufacturer">
+			</div>
+			
+			<div class="mb-3 mt-3">
+				<label for="deployDate">Deployed date:</label>
+				<input type="date" class="form-control" id="deployDate" placeholder="Enter Deployed date" name="deployDate">
+			</div>
+			
+			<div class="mb-3 mt-3">
+				<label for="cost">Cost:</label>
+				<input type="text" class="form-control" id="cost" placeholder="Enter Cost" name="cost">
+			</div>
+			
+			<div class="mb-3">
+				<label for="lab">Room:</label>
+				<select class="form-control" id="roomid"  name="room.roomId">
+				    <option>Please select room</option>
+					<option th:each="room : ${rooms}"   th:value="${room.roomId}" th:text="${room.roomName}"></option>
+				</select>
+			</div>
+		
+			
+			<div class="mb-3">
+				<label for="primaryContact">Primary Contact:</label>
+				<select class="form-control" id="primaryContact"  name="primaryContact">
+				    <option>Please select primary contact</option>
+					<option th:each="user : ${users}"   th:value="${user.username}" th:text="${user.username}"></option>
+				</select>
+			</div>
+			
+			<div class="mb-3">
+				<label for="secondryContact">Secondery Contact:</label>
+				<select class="form-control" id="secondryContact"  name="secondryContact">
+				    <option>Please select secondry contact</option>
+					<option th:each="user : ${users}"   th:value="${user.username}" th:text="${user.username}"></option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<div class="container mt-5">
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+</body>
+
+</html>
