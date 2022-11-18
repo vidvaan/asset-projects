@@ -17,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -59,6 +61,33 @@ public class SecurityConfig {
 	      .passwordEncoder(passwordEncoder)
 	      .and()
 	      .build();
+	}
+	
+	@Bean
+	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+		// declares which Page(URL) will have What access type
+		http.authorizeRequests().antMatchers("/home").permitAll().antMatchers("/index").authenticated()
+				.antMatchers("/admin").hasAuthority("ADMIN").antMatchers("/emp").hasAuthority("EMPLOYEE")
+				.antMatchers("/mgr").hasAuthority("MANAGER").antMatchers("/common")
+				.hasAnyAuthority("EMPLOYEE", "MANAGER")
+
+				// Any other URLs which are not configured in above antMatchers
+				// generally declared aunthenticated() in real time
+				.anyRequest().authenticated()
+
+				// Login Form Details
+				.and().formLogin().defaultSuccessUrl("/index", true)
+				
+				// Exception Details
+				//.and().exceptionHandling().accessDeniedPage("/accessDenied")
+
+				// Logout Form Details
+				.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+
+				// Exception Details
+				//.and().exceptionHandling().accessDeniedPage("/accessDenied");
+		return http.build();
 	}
 
 }

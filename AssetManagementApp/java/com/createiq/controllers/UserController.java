@@ -30,7 +30,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/addUser")
-	public String addLab(UserInfo userDetails) {
+	public String addUser(UserInfo userDetails) {
 		System.out.println("User Details : "+userDetails);
 		 userService.addUser(userDetails);
 		return "redirect:allUsers";

@@ -1,92 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
 </head>
+
 <body>
-    <div>
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark"  th:fragment="header">
-		  <div class="container-fluid">
-		    <a class="navbar-brand" href="#">Creqte IQ AMS</a>
-		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-		      <span class="navbar-toggler-icon"></span>
-		    </button>
-		    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-		      <ul class="navbar-nav">
-		         <li class="nav-item">
-		          <a class="nav-link" href="#">Home</a>
-		        </li> 
-		        <li class="nav-item">
-		          <a class="nav-link" href="#">About Us</a>
-		        </li>
-		        <li class="nav-item dropdown">
-		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Assets</a>
-		          <ul class="dropdown-menu">
-		            <li><a class="dropdown-item" href="./addAsset">Add Asset</a></li>
-		            <li><a class="dropdown-item" href="./allAssets">All Assets</a></li>
-		          </ul>
-		        </li>
-		        <li class="nav-item dropdown">
-		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Labs</a>
-		          <ul class="dropdown-menu">
-		            <li><a class="dropdown-item" href="./addLab">Add Lab</a></li>
-		            <li><a class="dropdown-item" href="./allLabs">All Labs</a></li>
-		          </ul>
-		        </li>
-		         <li class="nav-item dropdown">
-		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Rooms</a>
-		          <ul class="dropdown-menu">
-		            <li><a class="dropdown-item" href="./addRoom">Add Room</a></li>
-		            <li><a class="dropdown-item" href="./allRooms">All Rooms</a></li>
-		          </ul>
-		        </li>
-		        <li class="nav-item dropdown">
-		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Users</a>
-		          <ul class="dropdown-menu">
-		            <li><a class="dropdown-item" href="./addUser">Add User</a></li>
-		            <li><a class="dropdown-item" href="./allUsers">All Users</a></li>
-		          </ul>
-		        </li>
-		        <li class="nav-item dropdown">
-		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Roles</a>
-		          <ul class="dropdown-menu">
-		            <li><a class="dropdown-item" href="./addRole">Add Role</a></li>
-		            <li><a class="dropdown-item" href="./allRoles">All Roles</a></li>
-		          </ul>
-		        </li>
-		        <li class="nav-item">
-		          <a class="nav-link" href="#">Contact Us</a>
-		        </li>
-		        <li class="nav-item">
-		          <a class="nav-link" href="./logout">Logout</a>
-		        </li>
-		      </ul>
-		    </div>
-		  </div>
+	<div th:fragment="header">
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Creqte IQ AMS</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">About Us</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">Assets</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="./addAsset" sec:authorize="hasAuthority('ADMIN')">Add
+										Asset</a></li>
+								<li><a class="dropdown-item" href="./allAssets">All Assets</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">Labs</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="./addLab" sec:authorize="hasAuthority('ADMIN')">Add
+										Lab</a></li>
+								<li><a class="dropdown-item" href="./allLabs">All Labs</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">Rooms</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="./addRoom" sec:authorize="hasAuthority('ADMIN')">Add
+										Room</a></li>
+								<li><a class="dropdown-item" href="./allRooms">All Rooms</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">Users</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="./addUser" sec:authorize="hasAuthority('ADMIN')">Add
+										User</a></li>
+								<li><a class="dropdown-item" href="./allUsers">All Users</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">Roles</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="./addRole" sec:authorize="hasAuthority('ADMIN')">Add Role</a></li>
+								<li><a class="dropdown-item" href="./allRoles">All Roles</a></li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Contact Us</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./logout">Logout</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</nav>
-    </div>
-    <div class="container-fluid bg-primary text-white text-center p-5">
-        <h1>Asset Management System</h1>
-        <p>This apllication manages all Assets in Pharma Labs</p> 
-      </div>
-      
-    <div class="container mt-5">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-  </div>
-</div>
+		<div style="text-align: right;">
+			Logged user: <span sec:authentication="name">Bob</span>
+			Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+		</div>
+	</div>
+	<div class="container-fluid bg-primary text-white text-center p-5">
+		<h1>Asset Management System</h1>
+		<p>This apllication manages all Assets in Pharma Labs</p>
+	</div>
+
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-sm-4">
+				<h3>Column 1</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+			</div>
+			<div class="col-sm-4">
+				<h3>Column 2</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+			</div>
+			<div class="col-sm-4">
+				<h3>Column 3</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+			</div>
+		</div>
+	</div>
 </body>
+
 </html>
